@@ -27,11 +27,11 @@ export default class CharDetails extends Component {
         if(!charId){
             return;
         }
-
         this.getService.getCharacter(charId)
             .then((char) => {
                 this.setState({char})
         })
+        this.foo.bar = 0
     }
 
     render() {
