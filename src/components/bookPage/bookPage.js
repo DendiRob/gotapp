@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import './charDetailPage.css';
+// import './bookPage.css';
 import ItemList from '../itemList';
 import ErrorMessage from '../errorMessage';
 import GotService from '../../services/service';
@@ -7,20 +7,13 @@ import GotService from '../../services/service';
 
 
 
-export default class CharacterPage extends Component {
+export default class BookPage extends Component {
     gotService = new GotService()
 
     state = {
-        onChar: true,
-        selectedItem: null,
-        errorr: false
+        errorr: null
     }
 
-    onItemSelected = (id) =>  {
-        this.setState({
-            selectedItem: id    
-        })
-    }   
 
     componentDidCatch() {
         console.log('failure')
@@ -36,10 +29,10 @@ export default class CharacterPage extends Component {
         }
         return(
             <ItemList 
-                    getData={this.gotService.getAllCharacters}
-                    renderItem = {(item) => item.name} 
-                    page={2} 
-                    gotPage={'characters'}/>
+                getData={this.gotService.getAllBooks}
+                renderItem = {(item) => item.name} 
+                page={1}
+                gotPage={'books'}/>
         )
     }
 }

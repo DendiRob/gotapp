@@ -2,49 +2,58 @@ import React, {Component} from 'react';
 import './itemList.css';
 import GotService from '../../services/service';
 import Spinner  from '../spinner';
+import { Link } from 'react-router-dom';
 
 export default class ItemList extends Component {
     gotService = new GotService()
 
     state = {
-        charList: null,
-        pageOfCharacters: null
+        itemList: null,
+        pageOfItem: null,
     }
 
+
     componentDidMount() {
-        const page = 5
-        this.gotService.getAllCharacters(page)
-            .then( (charList) => {
+        const {page} = this.props
+        const {getData} = this.props
+        getData()
+            .then( (itemList) => {
                 this.setState({
-                    charList,
-                    pageOfCharacters: page
+                    itemList: itemList,
+                    pageOfItem: page
                 })
             })
     }
 
     renderItems(arr) {
-        const {pageOfCharacters} = this.state
+        const {pageOfItem} = this.state
         return arr.map((item, i) => {
+            const {id} = item
+            const label = this.props.renderItem(item)
+
             return (
-                <li
-                    key={i}
-                    className="list-group-item"
-                    onClick={() => this.props.onCharSelected((pageOfCharacters * 10 - 9) + i)}
-                    >
-                    {item.name}
-                </li>
+                <Link
+                key={id}
+                to={`/${this.props.gotPage}/${((pageOfItem * 10 - 9) + i)}`}>
+                    <li
+                    className="list-group-item">
+                        {label}
+                    </li>
+                </Link>
+
             )
         })
     }
 
     render() {
-        const {charList} = this.state;
+        const {itemList} = this.state;
 
-        if (!charList){
+        if (!itemList){
             return <Spinner />
         }
 
-        const items = this.renderItems(charList)
+        const items = this.renderItems(itemList)
+        
 
         return (
             <ul className="item-list list-group">

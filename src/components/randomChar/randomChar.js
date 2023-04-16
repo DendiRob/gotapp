@@ -5,11 +5,7 @@ import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage';
 
 export default class RandomChar extends Component {
-    constructor(){
-        super()
-        console.log('constr')
 
-    }
 
     state = {
         char: {},
