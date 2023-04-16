@@ -16,7 +16,7 @@ export default class ItemList extends Component {
     componentDidMount() {
         const {page} = this.props
         const {getData} = this.props
-        getData()
+        getData(page)
             .then( (itemList) => {
                 this.setState({
                     itemList: itemList,
@@ -27,10 +27,10 @@ export default class ItemList extends Component {
 
     renderItems(arr) {
         const {pageOfItem} = this.state
+        console.log(arr)
         return arr.map((item, i) => {
             const {id} = item
             const label = this.props.renderItem(item)
-
             return (
                 <Link
                 key={id}

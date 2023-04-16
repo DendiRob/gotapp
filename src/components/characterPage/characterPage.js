@@ -38,7 +38,7 @@ export default class CharacterPage extends Component {
             <ItemList 
                     getData={this.gotService.getAllCharacters}
                     renderItem = {(item) => item.name} 
-                    page={2} 
+                    page={5} 
                     gotPage={'characters'}/>
         )
     }

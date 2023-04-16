@@ -8,7 +8,7 @@ import CharacterPage from '../characterPage';
 import GotService from '../../services/service';
 import BookPage from '../bookPage'
 import HousePage from '../housePage/housePage';
-import { BooksItem, CharacterItem } from '../pages';
+import { BooksItem, CharacterItem, HouseItem } from '../pages';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -76,6 +76,9 @@ export default class App extends Component {
                             <Route 
                             path='/characters/:id' 
                             element={ <CharacterItem />} />
+                            <Route 
+                            path='/houses/:id' 
+                            element={ <HouseItem />} />
 
                         </Routes>
                     </Container>
